@@ -30,7 +30,7 @@ public class Main {
        
         }
 
-        long answer = 0;
+        int answer = 0;
 
         for (long i = 0 ; i <= k/2 ; i++){
             answer += (int)hash.getOrDefault(i,0) * (int)hash.getOrDefault(k-i,0);
@@ -39,7 +39,6 @@ public class Main {
 
         for (long i = k+1 ; i <= max_value ; i++){
             answer += (int)hash.getOrDefault(i,0) * (int)hash.getOrDefault(k-i,0);
-
         }
 
         System.out.println(answer);
