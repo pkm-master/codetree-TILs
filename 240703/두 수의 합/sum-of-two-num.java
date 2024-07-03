@@ -29,13 +29,14 @@ public class Main {
         int answer = 0;
 
         for (long key : hash.keySet()){
-            if (key != k/2){
-                answer += (int)hash.getOrDefault(key,0) * (int)hash.getOrDefault(k-key,0);
-            }
+            answer += (int)hash.getOrDefault(key,0) * (int)hash.getOrDefault(k-key,0);
         }
 
-        int half = (int)hash.getOrDefault((long)k/2,0);
-        answer += half * (half-1);
+        if (k % 2 == 0 ){
+            int half = (int)hash.getOrDefault((long)k/2,0);
+            answer -= half;
+
+        }
 
         System.out.println(answer/2);
     }
