@@ -16,40 +16,39 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         
         int n = Integer.parseInt(br.readLine());
-        
+
+        int[][] arr = new int[4][n];
+
         Map<Integer,Integer> hash1 = new HashMap<>();
         Map<Integer,Integer> hash2 = new HashMap<>();
-        Map<Integer,Integer> hash3 = new HashMap<>();
-        Map<Integer,Integer> hash4 = new HashMap<>();
+    
+        StringTokenizer stk;
 
-        StringTokenizer stk = new StringTokenizer(br.readLine());
-        for (int i = 0 ; i < n ; i++){
-            hash_fill(hash1,Integer.parseInt(stk.nextToken()));
+        for (int i = 0 ; i < 4 ; i++){
+            stk = new StringTokenizer(br.readLine());
+            for (int j = 0 ; j < n ; j++){
+                arr[i][j] = Integer.parseInt(stk.nextToken());
+            }
         }
 
-        stk = new StringTokenizer(br.readLine());
         for (int i = 0 ; i < n ; i++){
-            hash_fill(hash2,Integer.parseInt(stk.nextToken()));
+            for (int j = 0 ; j < n ; j++){
+                int key = arr[0][i] + arr[1][j];
+                hash_fill(hash1,key);
+            }
         }
 
-        stk = new StringTokenizer(br.readLine());
         for (int i = 0 ; i < n ; i++){
-            hash_fill(hash3,Integer.parseInt(stk.nextToken()));
-        }
-
-        stk = new StringTokenizer(br.readLine());
-        for (int i = 0 ; i < n ; i++){
-            hash_fill(hash4,Integer.parseInt(stk.nextToken()));
+            for (int j = 0 ; j < n ; j++){
+                int key = arr[2][i] + arr[3][j];
+                hash_fill(hash2,key);
+            }
         }
 
         int ans = 0;
 
         for (int key1 : hash1.keySet()){
-            for (int key2 : hash2.keySet()){
-                for (int key3 : hash3.keySet()){
-                    ans += hash1.get(key1) * hash2.get(key2) * hash3.get(key3) * hash4.getOrDefault(-key1-key2-key3,0);
-                }
-            }
+            ans += hash1.get(key1) * hash2.getOrDefault(-key1,0);
         }
         System.out.println(ans);
     }
