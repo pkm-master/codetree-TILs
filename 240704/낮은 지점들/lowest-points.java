@@ -13,12 +13,12 @@ public class Main {
 
         StringTokenizer stk;
 
-        Map<Integer,Integer> hash = new HashMap<>();
+        Map<Long,Long> hash = new HashMap<>();
 
         for (int i = 0 ; i < n ; i++){
             stk = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(stk.nextToken());
-            int y = Integer.parseInt(stk.nextToken());
+            long x = Long.parseLong(stk.nextToken());
+            long y = Long.parseLong(stk.nextToken());
             
             if (hash.containsKey(x)){
                 if (y < hash.get(x)){
@@ -29,11 +29,12 @@ public class Main {
             }
         }
 
-        int ans = 0;
+        long ans = 0;
 
-        for (int y : hash.values()){
+        for (long y : hash.values()){
             ans += y;
         }
+
 
         System.out.println(ans);
     }
