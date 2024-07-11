@@ -32,6 +32,6 @@ public class Main {
             }
         }
 
-        System.out.println(min_dist);
+        System.out.println(min_dist==1000000000 ? -1 : min_dist );
     }
 }
