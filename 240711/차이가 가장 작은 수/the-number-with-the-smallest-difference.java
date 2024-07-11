@@ -23,7 +23,7 @@ public class Main {
             int dist = 0;
             int target = el + m;
             if (set.ceiling(target)!=null && set.ceiling(target)-el < min_dist){
-                min_dist = set.ceiling(target);
+                min_dist = set.ceiling(target) - el;
             }
         }
 
