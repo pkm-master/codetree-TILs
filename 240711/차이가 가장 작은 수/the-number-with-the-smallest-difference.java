@@ -20,18 +20,10 @@ public class Main {
         int min_dist = 1000000000;
 
         for (int el : set){
-            int now = el;
             int dist = 0;
-            while (set.higher(now) != null && dist<min_dist){
-                dist = set.higher(now) - el;
-                if (dist >= m && dist<min_dist){
-                    min_dist = dist;
-                    break;
-                }
-                now = set.higher(now);
-            }
-            if (min_dist == m){
-                break;
+            int target = el + m;
+            if (set.ceiling(target)!=null && set.ceiling(target)-el < min_dist){
+                min_dist = set.ceiling(target);
             }
         }
 
