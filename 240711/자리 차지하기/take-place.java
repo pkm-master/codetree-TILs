@@ -25,10 +25,10 @@ public class Main {
                 set.remove(set.floor(wanted));
                 ans += 1;
             } else{
-                System.out.println(ans);
                 break;
             }
         }
-        // 여기에 코드를 작성해주세요.
+
+        System.out.println(ans);
     }
 }
