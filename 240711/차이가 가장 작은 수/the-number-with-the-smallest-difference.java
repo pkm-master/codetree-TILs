@@ -30,6 +30,9 @@ public class Main {
                 }
                 now = set.higher(now);
             }
+            if (min_dist == m){
+                break;
+            }
         }
 
         System.out.println(min_dist==1000000000 ? -1 : min_dist );
