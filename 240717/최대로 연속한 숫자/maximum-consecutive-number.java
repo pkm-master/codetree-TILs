@@ -37,9 +37,10 @@ public class Main {
 
             int original = hash.get(set.lower(cut));
             int changed = cut-set.lower(cut)-1;
-            map.get(original).remove(set.lower(cut));
+
+            if (map.containsKey(original)) map.get(original).remove(set.lower(cut));
             hash.replace(set.lower(cut), changed);
-            if (map.get(original).size() == 0) map.remove(original);
+            if (map.containsKey(original) && map.get(original).size() == 0) map.remove(original);
             if (!map.containsKey(changed) ) map.put(changed, new HashSet<Integer>());
             map.get(changed).add(set.lower(cut));
             System.out.println(map.lastKey());
