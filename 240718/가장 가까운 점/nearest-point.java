@@ -38,7 +38,7 @@ public class Main {
             q.add(p);
         }
 
-        System.out.println((q.peek().x)+" "+(q.peek().y));
+        System.out.println((q.peek().y)+" "+(q.peek().x));
         
     }
 }
