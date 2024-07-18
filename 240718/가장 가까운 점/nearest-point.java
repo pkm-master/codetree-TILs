@@ -10,7 +10,16 @@ class Pair implements Comparable<Pair>{
 
     @Override
     public int compareTo(Pair p){
-        return Math.abs(this.x) + Math.abs(this.y) - Math.abs(p.x) - Math.abs(p.y);
+        int distance = Math.abs(this.x) + Math.abs(this.y) - Math.abs(p.x) - Math.abs(p.y);
+        if (distance > 0){
+            return 1;
+        }else if (distance == 0 && this.x > p.x){
+            return 1;
+        }else if (distance == 0 && this.x == p.x && this.y > p.y){
+            return 1;
+        }else{
+            return -1;
+        }
     }
 }
 
@@ -38,7 +47,7 @@ public class Main {
             q.add(p);
         }
 
-        System.out.println((q.peek().y)+" "+(q.peek().x));
+        System.out.println((q.peek().x)+" "+(q.peek().y));
         
     }
 }
