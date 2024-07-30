@@ -46,7 +46,7 @@ public class Main {
         Pair Arrived = not_arrive.poll();
         current_time += Arrived.x;
         waiting.add(new Pair(Arrived.y, Arrived.x));
-        while (not_arrive.peek().x == current_time ){
+        while (!not_arrive.isEmpty() && not_arrive.peek().x == current_time ){
             Arrived = not_arrive.poll();
             waiting.add(new Pair(Arrived.y, Arrived.x));
         }
