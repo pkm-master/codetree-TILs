@@ -17,7 +17,7 @@ public class Main {
                 System.out.println(-1);
             } else{
                 int[] tmp = new int[3];
-                int m = 1;
+                long m = 1;
                 for (int j=0 ; j<3 ; j++){
                     tmp[j] = q.poll();
                     m *= tmp[j];
