@@ -12,7 +12,7 @@ class Node{
     }
 
     public void insertprev(Node node){
-        this.prev.next = node;
+        if (this.prev != null ) this.prev.next = node;
         node.prev = this.prev;
 
         this.prev = node;
@@ -21,7 +21,7 @@ class Node{
     }
 
     public void insertback(Node node){
-        this.next.prev = node;
+        if (this.next != null) this.next.prev = node;
         node.next = this.next;
 
         this.next = node;
@@ -41,18 +41,25 @@ public class Main {
 
         for (int i=0 ; i<n ; i++){
             StringTokenizer stk = new StringTokenizer(br.readLine());
-            method = stk.nextToken();
+            String method = stk.nextToken();
             if (method.equals("1")){
-                value = stk.nextToken();
+                String value = stk.nextToken();
+                curr.insertprev(new Node(value));
                 
             }else if (method.equals("2")){
-                value = stk.nextToken();
+                String value = stk.nextToken();
+                curr.insertback(new Node(value));
+
 
             }else if (method.equals("3")){
                 if (curr.prev != null) curr = curr.prev;
             }else if (method.equals("4")){
                 if (curr.next != null) curr = curr.next;
             }
+
+            System.out.print( curr.prev != null ? curr.prev.data + " " : "(Null) ");
+            System.out.print( curr.data + " " );
+            System.out.println( curr.next != null ? curr.next.data : "(Null)" );
 
         }
 
