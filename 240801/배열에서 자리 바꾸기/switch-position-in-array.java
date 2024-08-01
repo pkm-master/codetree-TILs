@@ -68,7 +68,7 @@ public class Main {
             }
         }
 
-        Node curr = node_arr[4];
+        Node curr = node_arr[1];
         while (curr.prev != null){
             curr = curr.prev;
         }
