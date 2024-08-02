@@ -74,6 +74,9 @@ public class Main {
                 Node tmp_second = tmp_first.next;
                 disconnect(shelves[indexI], tmp_first);
                 disconnect(tmp_first, tmp_second);
+
+                if (tmp_second == null ) tails[indexI] = shelves[indexI];
+
                 connect(shelves[indexI], tmp_second);
                 connect(tails[indexJ],tmp_first);
                 tails[indexJ] = tmp_first;
