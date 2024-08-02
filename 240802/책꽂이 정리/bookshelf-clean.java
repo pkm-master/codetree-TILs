@@ -58,13 +58,13 @@ public class Main {
 
         }
 
-        for(int i=0 ; i<5 ; i++){
+        for(int i=0 ; i<Q ; i++){
             stk = new StringTokenizer(br.readLine());
             int method = Integer.parseInt(stk.nextToken());
             int indexI = Integer.parseInt(stk.nextToken());
             int indexJ = Integer.parseInt(stk.nextToken());
 
-            if (shelves[indexI] == tails[indexI]){
+            if (shelves[indexI].next == null){
                 continue;
             }
 
@@ -110,12 +110,10 @@ public class Main {
             }else{
                 Node books = shelves[indexI].next;
                 disconnect(shelves[indexI], books);
+                Node tmp_end = tails[indexI];
+                tails[indexI] = shelves[indexI];
                 connect(tails[indexJ], books);
-
-                if(indexI != indexJ){
-                    tails[indexJ] = tails[indexI];
-                    tails[indexI] = shelves[indexI];
-                }
+                tails[indexJ] = tmp_end;
 
                 int book_num = shelves[indexI].book_numbers;
                 shelves[indexJ].book_numbers += book_num;
