@@ -8,16 +8,18 @@ public class Main {
         StringTokenizer stk = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(stk.nextToken());
         int Q = Integer.parseInt(stk.nextToken());
+        int max_range = 1000000;
 
         stk = new StringTokenizer(br.readLine());
-        int[] points = new int[10000000+1];
-        int[] sums = new int[10000000+1];
+        int[] points = new int[max_range+1];
+        int[] sums = new int[max_range+1];
         
         for (int i=1; i<=N; i++){
             points[Integer.parseInt(stk.nextToken())] = 1;
         }
 
-        for (int i=1; i<= 10000000 ; i++ ){
+        sums[0] = points[0];
+        for (int i=1; i<= max_range ; i++ ){
             sums[i] = sums[i-1]+points[i];
         }
 
@@ -26,7 +28,8 @@ public class Main {
 
             int s = Integer.parseInt(stk.nextToken());
             int e = Integer.parseInt(stk.nextToken());
-            System.out.println(sums[e]-sums[s-1]);
+            if (s!=0) System.out.println(sums[e]-sums[s-1]);
+            else System.out.println(sums[e]);
 
         }
     }
