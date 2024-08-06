@@ -50,11 +50,11 @@ public class Main {
             }
         }
 
-        int total=0;
+        long total=0;
         for (int i=0; i<o_cnt; i++){
             total+=Cs[i]*Ws[i];
         }
         System.out.println(total);
-        
+
     }
 }
