@@ -23,7 +23,7 @@ public class Main {
 
         int max_value = 0;
 
-        for (int i=0; i<n; i++){
+        for (int i=2; i<n-2; i++){
             int partial = R[i] + L[i] + nums[i];
             if (max_value < partial) max_value=partial;
         }
