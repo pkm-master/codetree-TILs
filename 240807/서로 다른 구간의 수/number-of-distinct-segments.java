@@ -6,22 +6,26 @@ public class Main {
         // 여기에 코드를 작성해주세요.
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int limit = 100000;
-        int[] lines = new int[limit+1];
+        HashMap<Integer,Integer> lines = new HashMap<>();
+        PriorityQueue<Integer> points = new PriorityQueue<>();
+        
         for(int i=0; i<n; i++){
             StringTokenizer stk = new StringTokenizer(br.readLine());
             int s = Integer.parseInt(stk.nextToken());
             int e = Integer.parseInt(stk.nextToken());
-            lines[s] = 1;
-            lines[e] = -1;
+            lines.put(s,1);
+            lines.put(e,-1);
+            points.add(s);
+            points.add(e);
         }
 
         int sums=0;
         int cnt=0;
 
-        for(int i=0; i<=limit; i++){
+        while(!points.isEmpty()){
+            int value = points.poll();
             int tmp_sum = sums;
-            sums+=lines[i];
+            sums+=lines.get(value);
             if(tmp_sum>sums && sums==0){
                 cnt++;
             }
