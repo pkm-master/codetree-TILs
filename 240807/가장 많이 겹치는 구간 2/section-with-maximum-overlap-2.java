@@ -24,19 +24,16 @@ public class Main {
 
         int sums = 0;
         int max_value = 0;
-        int max_cnt = 1;
         
         while (!q.isEmpty()){
             int point = q.poll();
             sums += line.get(point);
             if (max_value<sums){
                 max_value = sums;
-                max_cnt = 1;
-            }else if (max_value==sums){
-                max_cnt += 1;
+
             }
 
         }
-        System.out.println(max_cnt);
+        System.out.println(max_value);
     }
 }
