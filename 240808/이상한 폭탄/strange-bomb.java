@@ -29,6 +29,6 @@ public class Main {
                 logs.put(bom,i);
             }
         }
-        System.out.println(max_bom);
+        System.out.println(max_bom!=0? max_bom:-1);
     }
 }
