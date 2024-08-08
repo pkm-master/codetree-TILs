@@ -21,7 +21,7 @@ public class Main {
         int[] biggers = new int[ls.size()];
 
         int j=0;
-        int sums = 0;
+        long sums = 0;
         for (int i=0;i<ls.size();i++){
 
             while( j < rs.size() && ls.get(i)>rs.get(j) ){
