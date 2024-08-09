@@ -12,7 +12,7 @@ public class Main {
         // K가 큰거부터 시작해서 7의 배수가 나오면 stop하고 k를 출력
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int[] sums = new int[n+1];
+        long[] sums = new long[n+1];
 
         for (int i=1; i<=n; i++){
             sums[i] = sums[i-1] + Integer.parseInt(br.readLine());
@@ -23,7 +23,7 @@ public class Main {
         boolean isFind = false;
         for (int k=n; k>0; k--){
             for (int i=n; i>k-1; i--){
-                int part = sums[i] - sums[i-k];
+                long part = sums[i] - sums[i-k];
                 if (part % 7 == 0){
                     value = k;
                     isFind = true;
