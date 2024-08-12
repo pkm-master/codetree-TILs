@@ -8,7 +8,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer stk = new StringTokenizer(br.readLine());
         int n = Integer.parseInt(stk.nextToken());
-        int s = Integer.parseInt(stk.nextToken());
+        long s = Long.parseLong(stk.nextToken());
 
         int[] arr = new int[n];
         stk = new StringTokenizer(br.readLine());
@@ -17,7 +17,7 @@ public class Main {
             arr[i] = Integer.parseInt(stk.nextToken());
         }
         
-        int sums = 0;
+        long sums = 0;
         int ans = 1000000;
         int j = 0;
 
@@ -28,11 +28,10 @@ public class Main {
 
             }
 
-            if (sums == s) ans = Math.min(ans,j-i);
-            else ans = Math.min(ans,j-i+1); 
+            if (sums>=s)ans = Math.min(ans,j-i);
             sums -= arr[i];
 
         }
-        System.out.println(ans);
+        System.out.println(ans==1000000? -1 : ans);
     }
 }
