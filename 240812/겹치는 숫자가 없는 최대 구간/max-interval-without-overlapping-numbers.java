@@ -7,7 +7,7 @@ public class Main {
         // counting array를 추가로 설정
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        int[] count = new int[n+1];
+        int[] count = new int[100000+1];
         StringTokenizer stk = new StringTokenizer(br.readLine());
         int[] ls = new int[n];
 
