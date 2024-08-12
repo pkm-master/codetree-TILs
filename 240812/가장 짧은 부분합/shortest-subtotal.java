@@ -28,7 +28,8 @@ public class Main {
 
             }
 
-            ans = Math.min(ans, j-i+1);
+            if (sums == s) ans = Math.min(ans,j-i);
+            else ans = Math.min(ans,j-i+1); 
             sums -= arr[i];
 
         }
