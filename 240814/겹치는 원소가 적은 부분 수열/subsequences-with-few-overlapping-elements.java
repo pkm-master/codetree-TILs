@@ -23,20 +23,23 @@ public class Main {
         int ans = 0;
         int tmp = 0;
 
-        while (i<n && j<n){
+        while (i<n-1 && j<n){
             if (count.containsKey(arr[j])){
                 count.put(arr[j],count.get(arr[j])+1);
-                while (count.get(arr[j])>k){
-                    i ++;
-                    tmp --;
+                
+                while (i<j && count.get(arr[j])>k){
+                    // System.out.println(i);
                     count.put(arr[i],count.get(arr[i])-1);
+                    tmp --;
+                    i ++;
                 }
+
             } else{
                 count.put(arr[j],1);
             }
+            j++;
 
             tmp++;
-            j++;
 
             ans = Math.max(ans,tmp);
         }
