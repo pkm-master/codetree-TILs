@@ -74,15 +74,12 @@ public class Main {
             }
         }
 
-        System.out.println(Ls);
-        System.out.println(Rs);
-
         int ans = 0;
         for (int i=0; i<n; i++){
             int curr = fire.get(i);
             int value = 0;
             if (Ls.get(curr) != -1111111111 && Rs.get(curr) != -1111111111){
-                value = Math.max(Math.abs(curr-Ls.get(curr)), Math.abs(curr-Rs.get(curr)));
+                value = Math.min(Math.abs(curr-Ls.get(curr)), Math.abs(curr-Rs.get(curr)));
             }else if (Ls.get(curr) != -1111111111){
                 value = Math.abs(curr-Ls.get(curr));
             }else if (Rs.get(curr) != -1111111111){
