@@ -74,6 +74,9 @@ public class Main {
             }
         }
 
+        System.out.println(Ls);
+        System.out.println(Rs);
+
         int ans = 0;
         for (int i=0; i<n; i++){
             int curr = fire.get(i);
