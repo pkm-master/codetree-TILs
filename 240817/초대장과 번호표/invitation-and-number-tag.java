@@ -38,14 +38,13 @@ public class Main {
 
             for (int j=0; j<mem_n; j++){
                 int member = Integer.parseInt(stk.nextToken());
-                if (j==0) {
-                    q.add(member);
-                    isInvited[member] = true;
-                } 
                 uninvited[i].add(member);
                 whatGroups[member].add(i);
             }
         }
+
+        q.add(1);
+        isInvited[1] = true;
 
         while (!q.isEmpty()){
             int curr = q.poll();
@@ -64,6 +63,7 @@ public class Main {
                 }
             }
         }
+        // System.out.println(invited);
         System.out.println(invited.size());
         
         
