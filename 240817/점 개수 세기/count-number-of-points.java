@@ -27,6 +27,9 @@ public class Main {
             points_hash.add(point);
         }
 
+        Arrays.sort(points,0,n);
+        
+
         // q개의 질의에 대해 각 구간내에 놓인 점의 개수를 한줄에 하나씩
         // 이 방식으로 구현시 주어진 구간의 시작이 겹치면 이슈 발생
 
@@ -44,6 +47,7 @@ public class Main {
 
         ArrayList<Integer> linespoint = new ArrayList<>(hash);
         Collections.sort(linespoint);
+
 
         HashMap<Integer,Integer> point_n = new HashMap<>();
         int number = 0;
