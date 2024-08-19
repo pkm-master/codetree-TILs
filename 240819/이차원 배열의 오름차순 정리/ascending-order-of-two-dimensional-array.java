@@ -2,8 +2,8 @@ import java.io.*;
 import java.util.*;
 
 class Period{
-    int min, max, isValid;
-    public Period(int min, int max, int isValid){
+    long min, max, isValid;
+    public Period(long min, long max, long isValid){
         this.min = min;
         this.max = max;
         this.isValid = isValid;
@@ -12,14 +12,14 @@ class Period{
 
 
 public class Main {
-    public static int n;
+    public static long n;
 
-    public static Period where(int value){
+    public static Period where(long value){
 
-        int min_value = 1;
-        int additional = 0;
+        long min_value = 1;
+        long additional = 0;
         for (int i=1; i<=n; i++){
-            int max_j = Math.min(value/i,n);
+            long max_j = Math.min(value/i,n);
 
             min_value += max_j;
             if(max_j * i == value){
@@ -39,13 +39,13 @@ public class Main {
         // 배열의 인덱스는 1부터 시작
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(br.readLine());
-        int k = Integer.parseInt(br.readLine());
+        long k = Integer.parseInt(br.readLine());
 
-        int st = 1;
-        int end = (int)Math.pow(n,2);
+        long st = 1;
+        long end = (long)Math.pow(n,2);
 
         while (st<=end){
-            int mid = (st+end)/2;
+            long mid = (st+end)/2;
             // System.out.println(mid);
             Period p = where(mid);
             if (p.isValid != -1 && p.min<=k && p.max>=k){
