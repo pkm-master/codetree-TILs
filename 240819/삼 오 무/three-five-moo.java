@@ -3,19 +3,19 @@ import java.util.*;
 
 public class Main {
 
-    public static int where(int value){
+    public static long where(long value){
         return value - (value/3) - (value/5) + (value/15);
     }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
+        long n = Integer.parseInt(br.readLine());
 
-        int st = 1;
-        int end = 1000000000;
+        long st = 1;
+        long end = Long.MAX_VALUE;
 
         while (st<=end){
-            int mid = (st+end)/2;
+            long mid = (st+end)/2;
 
             if (where(mid) == n && mid %3 != 0 && mid % 5 != 0){
                 System.out.println(mid);
