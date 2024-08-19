@@ -26,10 +26,11 @@ public class Main {
         Point start = set.first();
         long destination = 0;
         long curr = start.x;
-        int stuff = 0;
+        int stuff = 1;
 
         while (destination<=max_end){
             destination = curr + value;
+
             Point dest = set.floor(new Point(destination,true));
 
             if (dest.isSt){
@@ -56,7 +57,7 @@ public class Main {
         StringTokenizer stk = new StringTokenizer(br.readLine());
         n = Integer.parseInt(stk.nextToken());
         m = Integer.parseInt(stk.nextToken());
-        set = new TreeSet<Point>();
+        set = new TreeSet<>();
 
         for (int i=0; i<m; i++){
             stk = new StringTokenizer(br.readLine());
@@ -74,6 +75,7 @@ public class Main {
 
         while (st<=end){
             long mid = (st+end)/2;
+
             if (is_possible(mid)){
                 st = mid+1;
                 ans = Math.max(ans,mid);
