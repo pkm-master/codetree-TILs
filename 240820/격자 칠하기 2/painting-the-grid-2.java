@@ -42,9 +42,8 @@ public class Main {
             for (int j=0; j<n; j++){
                 st.x = i;
                 st.y = j;
-                // int part = color(value, st);
                 int part = coloring(value, st);
-                if (part>=Math.pow(n,2)/2+Math.pow(n,2)%2){
+                if (2*part >= n*n){
                     return true;
                 }
 
