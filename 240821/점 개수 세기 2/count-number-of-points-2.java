@@ -15,59 +15,107 @@ class Point implements Comparable<Point>{
     }
 }
 
+class Tuple{
+    int x1,y1,x2,y2;
+    public Tuple(int x1, int y1, int x2, int y2){
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
+    }
+}
+
 public class Main {
     public static int n,q;
-    public static TreeSet<Point> points;
-    public static ArrayList<Point> pointsArr;
+    public static Point[] points;
+    public static Tuple[] queries;
+    
+    public static TreeSet<Integer> nums = new TreeSet<>();
+    public static HashMap<Integer, Integer> mapper = new HashMap<>();
+    
+    public static int[][] prefix;
     
     public static int count(int x1, int y1, int x2, int y2){
-        // x1,y1보다는 큰데 x2,y2보다는 작은 범위에 있는 애들 긁어다
-        // y가 y1보다 크고 y2보다 작은애들 세서 반환
-        Point stStandard = new Point(x1,y1);
-        Point endStandard = new Point(x2,y2);
-        Point st,end;
+        return prefix[x2][y2] - prefix[x1-1][y2] - prefix[x2][y1-1] + prefix[x1-1][y1-1];
+    }
 
+    public static int lowerBound(int x){
+        if (nums.ceiling(x) != null) return mapper.get(nums.ceiling(x));
+        return nums.size()+1;
+    }
 
-        if (points.ceiling(stStandard) != null ) st = points.ceiling(new Point(x1,y1));
-        else return 0;
+    public static int upperBound(int x){
+        if (nums.floor(x) != null) return mapper.get(nums.floor(x));
+        return 0;
 
-        if (points.floor(endStandard) != null ) end = points.floor(endStandard);
-        else return 0;
-        
-        int stIndex = pointsArr.indexOf(st);
-        int endIndex = pointsArr.indexOf(end);
-
-        int cnt = 0;
-        for (int i=stIndex; i<=endIndex; i++){
-            Point curr = pointsArr.get(i);
-            if (curr.y >= y1 && curr.y <= y2) cnt++;
-        }
-
-        return cnt;
     }
 
     public static void main(String[] args) throws IOException {
-        // 여기에 코드를 작성해주세요.
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer stk = new StringTokenizer(br.readLine());
         n = Integer.parseInt(stk.nextToken());
         q = Integer.parseInt(stk.nextToken());
-        points = new TreeSet<>();
-        
-
+        points = new Point[n];
+        queries = new Tuple[q];
+    
         for (int i=0; i<n; i++){
             stk = new StringTokenizer(br.readLine());
-            points.add(new Point(Integer.parseInt(stk.nextToken()), Integer.parseInt(stk.nextToken())));
+            int x = Integer.parseInt(stk.nextToken());
+            int y = Integer.parseInt(stk.nextToken());
 
+            points[i] = new Point(x,y);
+
+            nums.add(x);
+            nums.add(y);
         }
 
-        pointsArr = new ArrayList<>(points);
-    
         for (int i=0; i<q; i++){
             stk = new StringTokenizer(br.readLine());
-            System.out.println(count(Integer.parseInt(stk.nextToken()),Integer.parseInt(stk.nextToken()),Integer.parseInt(stk.nextToken()),Integer.parseInt(stk.nextToken())));
+            queries[i] = new Tuple(Integer.parseInt(stk.nextToken()),Integer.parseInt(stk.nextToken()),Integer.parseInt(stk.nextToken()),Integer.parseInt(stk.nextToken()));
         }
+
+        // 좌표압축
+        int cnt=1;
+        for (int num:nums){
+            mapper.put(num, cnt);
+            cnt++;
+        }
+
+
+        // 누적합 배열 구축
+        prefix = new int[cnt+1][cnt+1];
+
+        for (int i=0; i<n; i++){
+            int x = points[i].x;
+            int y = points[i].y;
+
+            int mapX = mapper.get(x);
+            int mapY = mapper.get(y);
+
+            prefix[mapX][mapY] = 1;
+        }
+
+        for (int i=1; i<=cnt; i++){
+            for (int j=1; j<=cnt; j++){
+                prefix[i][j] += prefix[i-1][j] + prefix[i][j-1] - prefix[i-1][j-1];
+            }
+        }
+
+
+        // 점개수 구하기
+
+        for (int i=0; i<q; i++){
+            int mapX1 = lowerBound(queries[i].x1);
+            int mapY1 = lowerBound(queries[i].y1);
+            int mapX2 = upperBound(queries[i].x2);
+            int mapY2 = upperBound(queries[i].y2);
+
+            System.out.println(count(mapX1, mapY1, mapX2, mapY2));
+
+        }
+
+
 
     }
 }
