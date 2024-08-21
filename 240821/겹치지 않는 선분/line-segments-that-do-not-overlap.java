@@ -52,7 +52,7 @@ public class Main {
 
         int ans = 0;
         int i = 0;
-        while (0<i&& i<points.size()){
+        while (0<= i&& i<points.size()){
             Point nearEnd = endPoints.ceiling(points.get(i));
             if (nearEnd.idx == points.get(i).idx) {
                 ans++;
