@@ -3,19 +3,11 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        // 여기에 코드를 작성해주세요.
-        // n개의 정수로 이루어진 수열을 4개 구간
-        // 각 구간은 최소한 한개의 원소를 포함
-        // 각 구간에서 원소의 합은 같아야함
-        // n *n
-        // 4개의 합이 같다 
-
-        // L 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
         int[] arr = new int[n];
-        int[] L = new int[n];
-        int total = 0;
+        long[] L = new long[n];
+        long total = 0;
 
         StringTokenizer stk = new StringTokenizer(br.readLine());
         for (int i=0; i<n; i++){
@@ -34,7 +26,7 @@ public class Main {
         TreeSet<Integer> third = new TreeSet<>();
 
         for (int i=1; i<n; i++){
-            int currentSum = L[i]+arr[i];
+            long currentSum = L[i]+arr[i];
 
             if (currentSum==total/4){
                 first.add(i);
@@ -52,7 +44,11 @@ public class Main {
         ArrayList<Integer> thirdArr = new ArrayList<>(third);
         int lastSize = thirdArr.size();
 
-        int ans = 0;
+        // System.out.println(first);
+        // System.out.println(second);
+        // System.out.println(third);
+
+        long ans = 0;
         for (int i=0; i<firstArr.size(); i++){
             int nextJ = secondArr.indexOf(second.higher(firstArr.get(i)));
             if (nextJ == -1) continue;
