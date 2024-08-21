@@ -50,7 +50,7 @@ public class Main {
         Tuple curr = new Tuple(0,0,0);
         for (int i=0; i<k; i++){
             curr = sumq.poll();
-            sumq.add(new Tuple(A[curr.a_idx]+B[curr.b_idx+1],curr.a_idx,curr.b_idx+1));
+            if (curr.b_idx + 1 < m) sumq.add(new Tuple(A[curr.a_idx]+B[curr.b_idx+1],curr.a_idx,curr.b_idx+1));
         }
 
         System.out.println(curr.sum);
