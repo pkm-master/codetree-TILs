@@ -19,7 +19,7 @@ public class Main {
             }
         }
 
-        int ans = 0;
+        int ans = -1000*300*300;
 
         for (int i1=1; i1<=n; i1++){
             for (int j1=1; j1<=n; j1++){
