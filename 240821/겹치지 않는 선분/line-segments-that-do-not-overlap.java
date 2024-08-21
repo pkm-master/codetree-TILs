@@ -1,70 +1,60 @@
 import java.io.*;
 import java.util.*;
 
-class Point implements Comparable<Point>{
-    int x, idx;
+class Segment implements Comparable<Segment>{
+    int x1, x2;
 
-    public Point(int x, int idx){
-        this.x = x;
-        this.idx = idx;
+    public Segment(int x1, int x2){
+        this.x1 = x1;
+        this.x2 = x2;
     }
 
     @Override
-    public int compareTo(Point p){
-        return this.x-p.x;
+    public int compareTo(Segment s){
+        return this.x1-s.x1;
     }
     
 }
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        // 겹친다 : 해당선분의 x1보다 큰 x1을 지니는 동시 y1보다 작은 y1을 지니는 선분이 존재
-        // 맨끝에서 부터 시작해서
-        // 남의 end를 만나기전에 자기 end를 만나는데 성공하면
-        // end의 left가 start보다 크기가 크면 괜찮은 
-        // Ls : 특정 점의 왼쪽에 있는 것중 가장 가까운 endpoint의 좌표
-        
-        // 어떤 st점에서 시작했을때 그 st보다 크거나 같은 end가 같은 line -> 안겹침
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-        TreeSet<Point> startPoints = new TreeSet<>();
-        TreeSet<Point> endPoints = new TreeSet<>();
-        HashMap<Point,Point> lines = new HashMap<>();
-        HashMap<Point,Point> reverseLines = new HashMap<>();
+        Segment[] lines = new Segment[n];
+        int[] L = new int[n];
+        int[] R = new int[n];
 
         for (int i=0; i<n; i++){
             StringTokenizer stk = new StringTokenizer(br.readLine());
             int x1 = Integer.parseInt(stk.nextToken());
             int x2 = Integer.parseInt(stk.nextToken());
 
-            Point start = new Point(x1,i);
-            Point end = new Point(x2,i);
+            lines[i] = new Segment(x1,x2);
+        }
 
-            startPoints.add(start);
-            endPoints.add(end);
-            lines.put(start,end);
-            reverseLines.put(end,start);
+        Arrays.sort(lines);
+        // x1부터 시작했을때 해당 선분이 가능한 x2의 범위를 L R을 통해 관리 
+
+        L[0] = lines[0].x2;
+        for (int i=1; i<n; i++){
+            L[i] = Math.max(lines[i].x2, L[i-1]);
 
         }
 
-        ArrayList<Point> points = new ArrayList<>(startPoints);
+        R[n-1] = lines[n-1].x2;
+        for (int i=n-2; i>=0; i--){
+            R[i] = Math.min(lines[i].x2, R[i+1]);
+        }
 
         int ans = 0;
-        int i = 0;
-        while (0<= i&& i<points.size()){
-            Point nearEnd = endPoints.ceiling(points.get(i));
-            if (nearEnd.idx == points.get(i).idx) {
-                ans++;
-                i++;
-            }
-            else {
-                Point nextEnd = endPoints.higher(lines.get(points.get(i)));
-                i = points.indexOf(reverseLines.get(nextEnd));
+        for (int i=0; i<n; i++){
+            if (i>0 && L[i-1] >= lines[i].x2) continue;
+            if (i<n-1 && R[i+1] <= lines[i].x2) continue;
 
-            }
+            ans++;
         }
-
+        
         System.out.println(ans);
     }
 }
