@@ -20,9 +20,9 @@ public class Main {
 
         for (int i=1; i<n; i++) dp[i] = Math.min(dp[i-1],spot[i]);
 
-        int ans = 0;
+        long ans = 0;
 
-        for (int i=0; i<n-1; i++) ans += dp[i] * energy[i];
+        for (int i=0; i<n-1; i++) ans += (long)dp[i] * (long)energy[i];
 
         System.out.println(ans); 
 
