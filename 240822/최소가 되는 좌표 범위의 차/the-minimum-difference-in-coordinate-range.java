@@ -12,7 +12,8 @@ class Point implements Comparable<Point>{
 
     @Override
     public int compareTo(Point p){
-        return this.x - p.x;
+        return this.x - p.x; 
+
     }
 }
 
@@ -26,12 +27,12 @@ class PointY implements Comparable<PointY>{
 
     @Override
     public int compareTo(PointY p){
-        return this.y - p.y;
+        if(this.y != p.y) return this.y - p.y;
+        return this.x - p.x;
     }
 }
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer stk = new StringTokenizer(br.readLine());
@@ -47,43 +48,43 @@ public class Main {
 
         Arrays.sort(points);
 
-        int i=0;
-        int j=1;
+        int j=0;
 
         TreeSet<PointY> current = new TreeSet<>();
-
-        PointY pointI = new PointY(points[0].x, points[0].y);
-        PointY pointJ = new PointY(points[1].x, points[1].y);
-        current.add(pointI);
-        current.add(pointJ);
         PointY[] pointsY = new PointY[n];
-        pointsY[0] = pointI;
-        pointsY[1] = pointJ;
 
+        for (int i=0; i<n; i++){
+            pointsY[i] = new PointY(points[i].x, points[i].y);
+
+        }
 
         int ans = (int)Math.pow(10,6);
 
-        while (j<n){
-            int l = Math.abs( current.last().y - current.first().y);
-            
-            if (l<d){
+        current.add(pointsY[0]);
+
+        for (int i=0; i<n; i++){
+            while (j+1<n && current.last().y - current.first().y<d){
+                current.add(pointsY[j+1]);
                 j++;
-                if (j==n) break;
-                pointsY[j] = new PointY(points[j].x,points[j].y);
-                current.add(pointsY[j]);
-
-            } else{
-                int part = l;
-
-                while (i<j && part >= d){
-                    ans = Math.min(ans, Math.abs(current.last().x-current.first().x));
-                    current.remove(pointsY[i]);
-                    i++;
-                    part = Math.abs(current.last().y - current.first().y);
-                }
             }
+            
+            if (current.last().y - current.first().y<d){
+                break;
 
+            } 
+
+            ans = Math.min(ans, pointsY[j].x - pointsY[i].x);
+            current.remove(pointsY[i]);
         }
+
+
+        // for (int st=0;st<n-1;st++){
+        //     for (int end=st+1; end<n; end++){
+        //         if (points[end].x - points[st].x == 3070 && Math.abs(points[end].y - points[st].y)>=d){ System.out.println(points[end].x+" "+points[end].y + " " + points[st].x + " " + points[st].y);
+        //         System.out.println(end+" "+st);}
+
+        //     }
+        // }
 
         System.out.println(ans==(int)Math.pow(10,6)?-1:ans);
 
