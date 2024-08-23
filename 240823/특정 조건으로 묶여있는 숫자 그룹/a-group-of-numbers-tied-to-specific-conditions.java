@@ -9,6 +9,7 @@ public class Main {
         int n = Integer.parseInt(stk.nextToken());
         int k = Integer.parseInt(stk.nextToken());
         HashMap<Integer,Integer> backIdx = new HashMap<>();
+        HashMap<Integer,Integer> frontIdx = new HashMap<>();
 
         int[] arr = new int[n];
         TreeSet<Integer> numbers = new TreeSet<>();
@@ -20,19 +21,32 @@ public class Main {
         Arrays.sort(arr);
 
         for (int i=0; i<n; i++) backIdx.put(arr[i],i);
+        for (int i=n-1; i>=0; i--) frontIdx.put(arr[i],i);
 
         PriorityQueue<Integer> setNum = new PriorityQueue<>(Collections.reverseOrder());
+        int[] nums = new int[n];
+        int[] dp = new int[n];
 
         for (int i=0; i<n; i++){
             int upperbound = numbers.floor(arr[i]+k);
             int upperidx = backIdx.get(upperbound);
-            setNum.add(upperidx-i+1);
+            nums[i] = upperidx-i+1;
         } 
-        
-        int ans = 0;
-        for (int i=0; i<2; i++) ans += setNum.poll();
 
-        System.out.println(ans);
+        dp[n-1] = nums[n-1];
+
+        for (int i=n-2; i>=0; i--) dp[i] = Math.max(nums[i],nums[i+1]);
+
+        for (int i=0; i<n; i++){
+            if (numbers.higher(arr[i]+k)!=null){
+                int upper = numbers.higher(arr[i]+k);
+                setNum.add(nums[i]+dp[frontIdx.get(upper)]);
+            }else{
+                setNum.add(nums[i]);
+            }
+        }
+
+        System.out.println(setNum.poll());
 
         
     }
