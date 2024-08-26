@@ -13,7 +13,7 @@ public class Main {
             arr[i] = Integer.parseInt(stk.nextToken());
         }
 
-        int ans = 0;
+        int ans = -(int)Math.pow(10,9);
         int sums = 0;
 
         for (int i=0; i<n; i++){
