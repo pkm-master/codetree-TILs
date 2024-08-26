@@ -17,7 +17,7 @@ public class Main {
 
         int j = n-1;
         int ans = 0;
-        while (k>0 && j>0){
+        while (k>0 && j>=0){
             ans += k/coins[j];
             k = k%coins[j];
             j--;
