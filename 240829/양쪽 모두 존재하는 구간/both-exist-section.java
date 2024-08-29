@@ -44,7 +44,7 @@ public class Main {
             else outside.put(arr[i],1);
         }
 
-        System.out.println(ans);
+        System.out.println(ans==(int)Math.pow(10,6)? -1 : ans);
 
 
     }
