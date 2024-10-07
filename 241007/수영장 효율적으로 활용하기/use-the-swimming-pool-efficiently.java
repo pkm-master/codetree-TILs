@@ -15,8 +15,12 @@ public class Main {
                 partial += arr[i];
 
             }else{
-                partial = arr[i];
-                part += 1;
+                if (arr[i]<=limit){
+                    partial = arr[i];
+                    part += 1;
+                }else{
+                    return false;
+                }
             }
 
             if (part > m) return false;
