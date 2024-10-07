@@ -20,7 +20,9 @@ public class Main {
                 press++;
                 arr[i] = 1;
                 arr[i+1] = arr[i+1]==1? 0 : 1;
-                arr[i+2] = arr[i+2]==1? 0 : 1;
+                if (i+2<n){
+                    arr[i+2] = arr[i+2]==1? 0 : 1;
+                }
             }else if (i == n-1 && arr[i] == 0){
                 press = -1;
             }
