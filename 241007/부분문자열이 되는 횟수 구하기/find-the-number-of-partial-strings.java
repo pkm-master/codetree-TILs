@@ -48,7 +48,7 @@ public class Main {
 
         int st = 0;
         int end = A.length();
-        int ans = 0;
+        int ans = -1;
 
         
         while (st<=end){
