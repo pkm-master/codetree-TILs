@@ -30,7 +30,7 @@ public class Main {
 
         for (int i=0; i<=n; i++){
             graph[i] = new ArrayList<Pair>();
-            if (i!=1) dist[i] = inf;
+            dist[i] = inf;
         }
 
         for (int i=0; i<m; i++){
@@ -48,6 +48,7 @@ public class Main {
 
         q.add(new Pair(k,0));
         while (!q.isEmpty()){
+
             Pair now = q.poll();
             visited[now.x] = true;
             dist[now.x] = Math.min(dist[now.x], now.l);
