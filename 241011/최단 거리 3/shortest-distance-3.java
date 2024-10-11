@@ -12,6 +12,11 @@ class Pair implements Comparable<Pair>{
         return this.l - p.l;
     }
 
+    public boolean eqauls(Pair p){
+        if (this.x == p.x && this.l == p.l) return true;
+        else return false;
+    }
+
 }
 
 
