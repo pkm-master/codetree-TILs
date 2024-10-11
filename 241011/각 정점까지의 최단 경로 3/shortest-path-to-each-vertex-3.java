@@ -67,7 +67,7 @@ public class Main {
         }
 
         for (int i=2; i<=n; i++){
-            System.out.println(dist[i]);
+            System.out.println(dist[i]==inf? -1: dist[i]);
         }
         
 
