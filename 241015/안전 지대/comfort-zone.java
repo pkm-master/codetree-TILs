@@ -56,7 +56,7 @@ public class Main {
         }
 
         int ans = 0;
-        int ansK = 100;
+        int ansK = 1;
         for (int k=1; k<=100; k++){
             int cnt = 0;
             map = new int[n][m];
