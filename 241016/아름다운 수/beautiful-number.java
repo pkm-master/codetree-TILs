@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Main {
     public static int[] result;
-    public static HashSet<Integer> numbers = new HashSet<>();
+    public static HashSet<Long> numbers = new HashSet<>();
     public static int n;
     public static boolean isBeautiful(int[] result){
         int repeat = 1;
@@ -23,7 +23,7 @@ public class Main {
     }
     public static void select(int idx){
         if (idx==n){
-            int value = 0;
+            long value = 0;
             for (int i=0; i<n; i++){
                 value += result[i]*Math.pow(10,n-i-1);
             }
