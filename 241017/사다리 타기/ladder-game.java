@@ -17,26 +17,22 @@ class Pair implements Comparable<Pair>{
 
 public class Main {
     public static int n,m,l,minAns;
-    public static int[][] ladders;
+    public static Pair[] ladders;
     public static int[] initResult;
     public static int[] select;
+    public static int[] after;
 
-    public static int[] runLadder(){
-        int[] after = new int[n];
+    public static void runLadder(){
         for (int i=0; i<n; i++) after[i] = i+1;
-        PriorityQueue<Pair> q = new PriorityQueue<>();
 
         for (int i=0; i<m; i++){
-            if(select[i] >= 0) q.add(new Pair(ladders[select[i]][0],ladders[select[i]][1]));
+            if (select[i] == 1){
+                int change = ladders[i].x;
+                int tmp = after[change];
+                after[change] = after[change-1];
+                after[change-1] = tmp;
+            }
         }
-
-        while (!q.isEmpty()){
-            int change = q.poll().x;
-            int tmp = after[change];
-            after[change] = after[change-1];
-            after[change-1] = tmp;
-        }
-        return after;
     }
 
     public static boolean isSame(int[] A, int[]B){
@@ -47,14 +43,16 @@ public class Main {
     }
 
     public static void dfs(int idx){
-        if (idx==l){
-            int[] result = runLadder();
-            if (isSame(result,initResult)){
-                minAns = Math.min(minAns,l);
+        if (idx==m){
+            runLadder();
+            if (isSame(after,initResult)){
+                int sum = 0;
+                for (int i=0; i<m; i++) sum+= select[i];
+                minAns = Math.min(minAns,sum);
 
             }
         }else{
-            for (int i=idx; i<m; i++){
+            for (int i=0; i<2; i++){
                 select[idx] = i;
                 dfs(idx+1);
             }
@@ -68,32 +66,29 @@ public class Main {
         n = Integer.parseInt(stk.nextToken());
         m = Integer.parseInt(stk.nextToken());
 
-        ladders = new int[m][2];
+        ladders = new Pair[m];
         for (int i=0; i<m; i++){
             stk = new StringTokenizer(br.readLine());
-            ladders[i][0] = Integer.parseInt(stk.nextToken());
-            ladders[i][1] = Integer.parseInt(stk.nextToken());
+            ladders[i] = new Pair(Integer.parseInt(stk.nextToken()),Integer.parseInt(stk.nextToken()));
         }
 
         minAns = (int)1e9;
         select = new int[m];
+        after = new int[n];
+        initResult = new int[n];
 
         for (int i=0; i<m; i++){
-            select[i] = i;
+            select[i] = 1;
         }
 
-        initResult = runLadder();
+        runLadder();
+        for (int i=0; i<n; i++) initResult[i] = after[i];
 
         for (int i=0; i<m; i++){
-            select[i] = -1;
+            select[i] = 0;
         }
 
-        for (int i=0; i<=m; i++){
-            l = i;
-            dfs(0);
-            if (minAns!=(int)1e9) break;
-        }
-
+        dfs(0);
         System.out.println(minAns);       
 
     }
