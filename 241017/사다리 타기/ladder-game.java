@@ -49,8 +49,6 @@ public class Main {
     public static void dfs(int idx){
         if (idx==l){
             int[] result = runLadder();
-            // System.out.println(Arrays.toString(select));
-            // System.out.println(Arrays.toString(initResult));
             if (isSame(result,initResult)){
                 minAns = Math.min(minAns,l);
 
@@ -64,7 +62,6 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        // 여기에 코드를 작성해주세요.
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer stk = new StringTokenizer(br.readLine());
 
@@ -88,7 +85,7 @@ public class Main {
         initResult = runLadder();
 
         for (int i=0; i<m; i++){
-            select[i] = 0;
+            select[i] = -1;
         }
 
         for (int i=0; i<=m; i++){
