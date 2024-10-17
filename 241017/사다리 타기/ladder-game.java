@@ -43,14 +43,15 @@ public class Main {
     }
 
     public static void dfs(int idx){
-        if (idx==m){
+        if (idx==m){            
             runLadder();
+
             if (isSame(after,initResult)){
                 int sum = 0;
                 for (int i=0; i<m; i++) sum+= select[i];
                 minAns = Math.min(minAns,sum);
-
             }
+
         }else{
             for (int i=0; i<2; i++){
                 select[idx] = i;
@@ -71,6 +72,8 @@ public class Main {
             stk = new StringTokenizer(br.readLine());
             ladders[i] = new Pair(Integer.parseInt(stk.nextToken()),Integer.parseInt(stk.nextToken()));
         }
+
+        Arrays.sort(ladders);
 
         minAns = (int)1e9;
         select = new int[m];
