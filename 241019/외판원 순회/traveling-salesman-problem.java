@@ -17,9 +17,9 @@ public class Main {
             sum += arr[selected[n-2]-1][0];
 
             for (int i=0; i<n-2; i++){
+                if (arr[selected[i]-1][selected[i+1]-1] == 0) return;
                 sum += arr[selected[i]-1][selected[i+1]-1];
             }
-            // System.out.println(Arrays.toString(selected));
 
             ans = Math.min(ans, sum);
 
