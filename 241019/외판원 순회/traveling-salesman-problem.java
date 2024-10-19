@@ -13,6 +13,7 @@ public class Main {
 
         if (idx == n-1){
             int sum = 0;
+            if (arr[0][selected[0]-1] == 0 || arr[selected[n-2]-1][0] == 0) return;
             sum += arr[0][selected[0]-1];
             sum += arr[selected[n-2]-1][0];
 
