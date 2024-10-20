@@ -39,9 +39,9 @@ public class Main {
                 for (Pair di:dir){
                     int nextX = now.x+di.x;
                     int nextY = now.y+di.y;
-                    if (nextX>=0 && nextX<n && nextY>=0 && nextY<n && !visited[nextX][nextY] && arr[nextX][nextY]==0){
+                    if (nextX>=1 && nextX<=n && nextY>=1 && nextY<=n && !visited[nextX-1][nextY-1] && arr[nextX-1][nextY-1]==0){
                         q.add(new Pair(nextX,nextY));
-                        visited[nextX][nextY] = true;
+                        visited[nextX-1][nextY-1] = true;
                     }
                 }
             }
