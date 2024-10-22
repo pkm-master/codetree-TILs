@@ -42,7 +42,9 @@ public class Main {
             dist[i] = Integer.parseInt(stk.nextToken());
         }
         result = new int[k];
-        
+        for (int i=0; i<k; i++){
+            result[i] = 1;
+        }
         dfs(0);
 
         System.out.println(ans);
