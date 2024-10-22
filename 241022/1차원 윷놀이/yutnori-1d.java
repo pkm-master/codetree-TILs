@@ -20,12 +20,10 @@ public class Main {
 
         }
         for (int i=0; i<k; i++){
-            if (result[i] < m){
-                result[i] += dist[idx];
-                dfs(idx+1);
-                result[i] -= dist[idx];
-            }
-
+            result[i] += dist[idx];
+            dfs(idx+1);
+            result[i] -= dist[idx];
+            
         }
     }
     public static void main(String[] args) throws IOException {
