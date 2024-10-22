@@ -7,7 +7,7 @@ public class Main {
     public static boolean[] visited;
     
     public static int n,ans,m;
-    public static void dfs(int idx){
+    public static void dfs(int idx, int j){
         if (idx == m){
             // XOR 한 수 구하고 ans랑 비교
             int resultN = result[0];
@@ -17,11 +17,11 @@ public class Main {
             ans = Math.max(ans,resultN);           
             return;
         }
-        for (int i=0; i<n; i++){
+        for (int i=j; i<n; i++){
             if (!visited[i]){
                 result[idx] = numbers[i];
                 visited[i] = true;
-                dfs(idx+1);
+                dfs(idx+1, i);
                 visited[i] = false;
             }
         }
@@ -43,7 +43,7 @@ public class Main {
 
         visited = new boolean[n];
 
-        dfs(0);
+        dfs(0, 0);
         System.out.println(ans);
         // n개의 음이아닌 정수
         // m개를 뽑아 XOR
