@@ -54,6 +54,7 @@ public class Main {
         // 여기에 코드를 작성해주세요.
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         eq = br.readLine();
+        maxVal = -Integer.MIN_VALUE;
 
         dfs(0);
         
