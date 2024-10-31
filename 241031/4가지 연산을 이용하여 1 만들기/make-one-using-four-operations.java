@@ -13,6 +13,7 @@ public class Main {
 
         Queue<Integer> q = new LinkedList<>();
         q.add(1);
+        dp[1] = 1;
 
         while (!q.isEmpty()){
             int now = q.poll();
@@ -35,7 +36,7 @@ public class Main {
             
         }
 
-        System.out.println(dp[n]);
+        System.out.println(dp[n]-1);
 
 
     }
