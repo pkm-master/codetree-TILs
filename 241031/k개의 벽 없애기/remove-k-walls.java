@@ -96,6 +96,6 @@ public class Main {
 
         dfs(0,0);
         
-        System.out.println(ans);
+        System.out.println(ans==(int)1e9?-1 : ans);
     }
 }
